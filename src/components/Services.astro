@@ -1,0 +1,66 @@
+---
+const featured = [
+  {
+    title: 'Residencia Horizonte',
+    tag: 'Arquitectura residencial',
+    image: 'https://i.ibb.co/fYxkZ9dP/2-J7-A0081-HDR-copia.jpg',
+  },
+  {
+    title: 'Interior Nórdico',
+    tag: 'Styling editorial',
+    image: 'https://i.ibb.co/V0k7b3nx/IMG-9402-HDR-copia.jpg',
+  },
+];
+---
+
+<section id="proyectos" class="bg-black py-16 sm:py-20 lg:py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-wrap items-center justify-between gap-4">
+      <h2 class="font-serif text-3xl text-white sm:text-4xl">Obras destacadas</h2>
+      <a
+        href="#galeria"
+        class="text-[0.6rem] uppercase tracking-[0.5em] text-white/60 transition hover:text-white"
+      >
+        Ver todo
+      </a>
+    </div>
+
+    <div class="mt-10 grid gap-6 lg:grid-cols-[1.55fr_0.75fr]">
+      <article class="group relative overflow-hidden border border-white/10 bg-white/5">
+        <img
+          src={featured[0].image}
+          alt={featured[0].title}
+          class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 p-5">
+          <p class="text-[0.6rem] uppercase tracking-[0.4em] text-white/70">
+            {featured[0].tag}
+          </p>
+          <h3 class="mt-2 text-lg font-semibold text-white/95 sm:text-xl">
+            {featured[0].title}
+          </h3>
+        </div>
+      </article>
+
+      <article class="group relative overflow-hidden border border-white/10 bg-white/5">
+        <img
+          src={featured[1].image}
+          alt={featured[1].title}
+          class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 p-5">
+          <p class="text-[0.6rem] uppercase tracking-[0.4em] text-white/70">
+            {featured[1].tag}
+          </p>
+          <h3 class="mt-2 text-lg font-semibold text-white/95 sm:text-xl">
+            {featured[1].title}
+          </h3>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

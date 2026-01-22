@@ -1,0 +1,50 @@
+---
+const heroBg = 'https://i.ibb.co/zVCf9Yfz/IMG-1204.jpg';
+---
+
+<section id="welcome" class="relative isolate min-h-screen overflow-hidden">
+  <div class="absolute inset-0 -z-10">
+    <img
+      src={heroBg}
+      alt="Arquitectura moderna con vegetación"
+      class="h-full w-full object-cover"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="absolute inset-0 bg-black/60"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-black/10"></div>
+  </div>
+
+  <div class="mx-auto flex min-h-screen max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="flex w-full flex-col justify-center gap-6 pt-24 pb-16 sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-24">
+      <p class="text-[0.6rem] uppercase tracking-[0.6em] text-amber-300/80">
+        Estética arquitectónica
+      </p>
+
+      <h1 class="max-w-3xl font-serif text-4xl leading-[1.05] text-white sm:text-5xl lg:text-6xl xl:text-7xl">
+        Fotografía profesional que eleva tu
+        <span class="italic">AIRBNB</span>
+      </h1>
+
+      <p class="max-w-xl text-sm leading-6 text-white/70 sm:text-base sm:leading-7">
+        Capturando la luz dorada y la intención arquitectónica para transformar espacios en destinos
+        aspiracionales.
+      </p>
+
+      <div class="flex flex-wrap items-center gap-4 pt-2">
+        <a
+          href="/services"
+          class="inline-flex items-center justify-center bg-white px-6 py-3 text-[0.65rem] uppercase tracking-[0.45em] text-black transition hover:bg-white/90"
+        >
+          Explorar galería
+        </a>
+        <a
+          href="#contacto"
+          class="inline-flex items-center justify-center border border-white/40 px-6 py-3 text-[0.65rem] uppercase tracking-[0.45em] text-white/90 transition hover:border-white/70 hover:bg-white/10"
+        >
+          Reserva una sesión
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

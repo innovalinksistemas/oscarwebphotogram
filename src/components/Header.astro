@@ -1,0 +1,69 @@
+---
+const navItems = [
+
+  { label: 'Servicios', href: '/services' },
+  { label: 'Precio', href: '/detalle' },
+
+];
+---
+
+<header class="absolute left-0 top-0 z-50 w-full border-b border-white/10 bg-black/35 backdrop-blur-md">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between gap-6 py-4 sm:py-5">
+      <a href="#" class="flex items-baseline gap-3 text-white">
+        <span class="text-[0.65rem] uppercase tracking-[0.35em] text-white/80">
+          Portafolio
+        </span>
+        <span class="hidden sm:inline text-white/60">|</span>
+        <span class="font-serif text-base italic tracking-wide text-white/90 sm:text-lg">
+          Oscar Obregon Photography
+        </span>
+      </a>
+
+      <nav class="hidden items-center gap-8 md:flex">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class="text-[0.65rem] uppercase tracking-[0.35em] text-white/70 transition hover:text-white"
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+
+      <a
+        href="#contacto"
+        class="hidden md:inline-flex items-center border border-white/30 px-5 py-2 text-[0.65rem] uppercase tracking-[0.35em] text-white/90 transition hover:border-white/60 hover:bg-white/10"
+      >
+        Contacto
+      </a>
+
+      <details class="relative md:hidden">
+        <summary class="list-none cursor-pointer select-none rounded border border-white/20 p-2 text-white/80 transition hover:border-white/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60">
+          <span class="sr-only">Abrir menú</span>
+          <span class="block h-0.5 w-5 bg-white/80"></span>
+          <span class="mt-1 block h-0.5 w-5 bg-white/80"></span>
+          <span class="mt-1 block h-0.5 w-5 bg-white/80"></span>
+        </summary>
+        <div class="absolute right-0 mt-3 w-48 rounded border border-white/10 bg-black/85 p-3 backdrop-blur-md">
+          <div class="flex flex-col gap-3">
+            {navItems.map((item) => (
+              <a
+                href={item.href}
+                class="text-xs uppercase tracking-[0.3em] text-white/80 transition hover:text-white"
+              >
+                {item.label}
+              </a>
+            ))}
+            <a
+              href="#contacto"
+              class="mt-1 border border-white/30 px-3 py-2 text-[0.65rem] uppercase tracking-[0.35em] text-white/90 transition hover:border-white/60 hover:bg-white/10"
+            >
+              Contacto
+            </a>
+          </div>
+        </div>
+      </details>
+    </div>
+  </div>
+</header>

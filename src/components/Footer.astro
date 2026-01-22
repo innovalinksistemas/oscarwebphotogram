@@ -1,0 +1,68 @@
+---
+const year = new Date().getFullYear();
+const studioLinks = [
+  { label: 'Sobre mí', href: '#aboutus' },
+];
+const socialLinks = [
+  { label: 'Instagram', href: 'https://www.instagram.com/oscarobregon.photography/?hl=es' },
+
+];
+---
+
+<footer id="contacto" class="bg-black py-16 sm:py-20">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="grid gap-12 lg:grid-cols-[1.2fr_0.6fr_0.6fr]">
+      <div class="max-w-md">
+        <h3 class="font-serif text-2xl text-white">Oscar Obregon Photography</h3>
+        <p class="mt-4 text-sm leading-6 text-white/60 sm:text-base sm:leading-7">
+          Especialistas en la creación de activos visuales de alto impacto para el sector de la
+          hospitalidad de lujo y arquitectura contemporánea.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-6">
+          {socialLinks.map((link) => (
+            <a
+              href={link.href}
+              class="text-[0.6rem] uppercase tracking-[0.45em] text-white/50 transition hover:text-white"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <p class="text-[0.6rem] uppercase tracking-[0.5em] text-white/70">Estudio</p>
+        <ul class="mt-5 space-y-4">
+          {studioLinks.map((link) => (
+            <li>
+              <a href={link.href} class="text-sm text-white/55 transition hover:text-white">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <p class="text-[0.6rem] uppercase tracking-[0.5em] text-white/70">Contacto</p>
+        <ul class="mt-5 space-y-4 text-sm text-white/55">
+          <li>
+            <a href="mailto:info@oscarobregon.com" class="transition hover:text-white">
+              info@oscarobregon.com
+            </a>
+          </li>
+          <li>
+            <a href="https://wa.me/50660966629" class="transition hover:text-white">+506 60966629</a>
+          </li>
+          <li>La Fortuna, Costa Rica</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-14 border-t border-white/10 pt-6">
+      <div class="flex flex-wrap items-center justify-between gap-4 text-[0.6rem] uppercase tracking-[0.45em] text-white/40">
+        <span>© {year} Oscar Obregon Photography. All rights reserved.</span>
+      </div>
+    </div>
+  </div>
+</footer>

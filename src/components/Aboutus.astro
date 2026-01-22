@@ -1,0 +1,98 @@
+---
+const features = [
+  {
+    title: 'Composición editorial',
+    body:
+      'Enfoque minimalista que resalta la pureza de las líneas y la armonía de los materiales.',
+    icon: {
+      paths: ['M5 19L19 5'],
+      circles: [{ cx: 7, cy: 7, r: 2.5 }],
+    },
+  },
+  {
+    title: 'The Golden Hour',
+    body:
+      'Expertos en captura de luz ambiente para crear sensaciones de calidez y exclusividad.',
+    icon: {
+      paths: ['M4 16c4-1 6-4 6-8', 'M10 8c2 4 6 6 10 6', 'M6 20h12'],
+    },
+  },
+  {
+    title: 'Estrategia visual',
+    body:
+      'Diseñamos imágenes que conectan emocionalmente con el huésped, acelerando la reserva.',
+    icon: {
+      paths: ['M4 12c4-4 12-4 16 0', 'M4 12c4 4 12 4 16 0'],
+      circles: [{ cx: 12, cy: 12, r: 2 }],
+    },
+  },
+  {
+    title: 'Post-producción high-end',
+    body:
+      'Retoque meticuloso para una representación fiel pero elevada de cada estancia.',
+    icon: {
+      rects: [{ x: 4, y: 6, width: 16, height: 12, rx: 2 }],
+      paths: ['M8 10h4', 'M8 14h8'],
+    },
+  },
+];
+---
+
+<section id="aboutus" class="bg-black py-16 sm:py-20 lg:py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="grid gap-10 lg:grid-cols-[1.1fr_1.4fr] lg:items-start">
+      <div class="max-w-xl">
+        <p class="text-[0.6rem] uppercase tracking-[0.6em] text-amber-300/80">
+          Nuestra filosofía
+        </p>
+        <h2 class="mt-4 font-serif text-3xl leading-[1.15] text-white sm:text-4xl lg:text-5xl">
+          El arte de narrar espacios a través de la luz.
+        </h2>
+        <p class="mt-5 text-sm leading-6 text-white/60 sm:text-base sm:leading-7">
+          No solo documentamos estructuras; capturamos la atmósfera, el silencio y el lujo táctil
+          que define una propiedad excepcional.
+        </p>
+      </div>
+
+      <div class="grid gap-0 border border-white/10 sm:grid-cols-2">
+        {features.map((feature) => (
+          <div class="border-b border-white/10 p-6 sm:border-r sm:[&:nth-child(2n)]:border-r-0 sm:[&:nth-child(n+3)]:border-b-0">
+            <div class="flex items-center gap-3">
+              <span class="rounded-full border border-amber-300/40 p-2">
+                <svg
+                  viewBox="0 0 24 24"
+                  class="h-5 w-5 text-amber-300"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                >
+                  {feature.icon.paths?.map((path) => (
+                    <path d={path} />
+                  ))}
+                  {feature.icon.circles?.map((circle) => (
+                    <circle cx={circle.cx} cy={circle.cy} r={circle.r} />
+                  ))}
+                  {feature.icon.rects?.map((rect) => (
+                    <rect
+                      x={rect.x}
+                      y={rect.y}
+                      width={rect.width}
+                      height={rect.height}
+                      rx={rect.rx}
+                    />
+                  ))}
+                </svg>
+              </span>
+              <h3 class="text-xs uppercase tracking-[0.35em] text-white/80">
+                {feature.title}
+              </h3>
+            </div>
+            <p class="mt-4 text-sm leading-6 text-white/55">
+              {feature.body}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,152 @@
+---
+const filters = [
+  { label: 'Todos', value: 'all' },
+  { label: 'Interiores', value: 'interiores' },
+  { label: 'Exteriores', value: 'exteriores' },
+  
+];
+const gallery = [
+  { title: 'Suite Ámbar', image: 'https://i.ibb.co/LdynwNJC/2-J7-A0051-HDR-copia.jpg', category: 'interiores' },
+  { title: 'Residencia Cielo', image: 'https://i.ibb.co/gZSH1yLy/8-P0-A2382-copia.jpg', category: 'exteriores' },
+  { title: 'Atelier Norte', image: 'https://i.ibb.co/93dQSFH8/IMG-8334-HDR-copia.jpg', category: 'interiores' },
+  { title: 'Casa Arena', image: 'https://i.ibb.co/v69wf4VF/IMG-0623-copia.jpg', category: 'interiores' },
+  { title: 'Loft Urbano', image: 'https://i.ibb.co/HTjSyQ8J/IMG-1219-copia.jpg', category: 'interiores' },
+  { title: 'Villa Horizonte', image: 'https://i.ibb.co/QjfTYn4Z/Casa-45.jpg', category: 'exteriores' },
+];
+---
+
+<section id="galeria" class="min-h-screen bg-black pb-16 pt-28 sm:pt-32">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="max-w-2xl">
+      <h1 class="font-serif text-4xl text-white sm:text-5xl lg:text-6xl">
+        Portafolio <span class="font-sans font-semibold">Visual</span>
+      </h1>
+      <div class="mt-3 h-px w-20 bg-white/20"></div>
+      <p class="mt-6 text-sm leading-6 text-white/60 sm:text-base sm:leading-7">
+        Documentando la arquitectura contemporánea y espacios residenciales premium a través de una
+        lente minimalista y editorial.
+      </p>
+    </div>
+
+    <div class="mt-10 flex flex-wrap gap-6 border-b border-white/10 pb-4">
+      {filters.map((filter, index) => (
+        <button
+          type="button"
+          data-filter={filter.value}
+          class={`filter-btn text-[0.65rem] uppercase tracking-[0.4em] transition ${
+            index === 0 ? 'text-white' : 'text-white/40 hover:text-white/70'
+          }`}
+        >
+          {filter.label}
+        </button>
+      ))}
+    </div>
+
+    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" id="portfolio-grid">
+      {gallery.map((item) => (
+        <article
+          class="portfolio-card group relative overflow-hidden border border-white/10 bg-white/5"
+          data-category={item.category}
+          data-image={item.image}
+          data-title={item.title}
+        >
+          <img
+            src={item.image}
+            alt={item.title}
+            class="aspect-[4/3] w-full cursor-zoom-in object-cover transition duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 transition group-hover:opacity-100"></div>
+          <div class="absolute bottom-0 left-0 p-4 opacity-0 transition group-hover:opacity-100">
+            <p class="text-xs uppercase tracking-[0.35em] text-white/80">{item.title}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <div
+    id="lightbox"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 p-4"
+    role="dialog"
+    aria-modal="true"
+  >
+    <button
+      id="lightbox-close"
+      class="absolute right-6 top-6 text-xs uppercase tracking-[0.4em] text-white/70 hover:text-white"
+      type="button"
+    >
+      Cerrar
+    </button>
+    <div class="max-h-[85vh] w-full max-w-5xl">
+      <img
+        id="lightbox-image"
+        src=""
+        alt=""
+        class="max-h-[85vh] w-full rounded object-contain"
+      />
+      <p id="lightbox-title" class="mt-4 text-center text-xs uppercase tracking-[0.35em] text-white/70"></p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.portfolio-card');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImage = document.getElementById('lightbox-image');
+  const lightboxTitle = document.getElementById('lightbox-title');
+  const lightboxClose = document.getElementById('lightbox-close');
+
+  const setActiveFilter = (target) => {
+    filterButtons.forEach((btn) => {
+      btn.classList.remove('text-white');
+      btn.classList.add('text-white/40');
+    });
+    target.classList.add('text-white');
+    target.classList.remove('text-white/40');
+  };
+
+  filterButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter');
+      setActiveFilter(btn);
+      cards.forEach((card) => {
+        const category = card.getAttribute('data-category');
+        const shouldShow = filter === 'all' || category === filter;
+        card.classList.toggle('hidden', !shouldShow);
+      });
+    });
+  });
+
+  cards.forEach((card) => {
+    card.addEventListener('click', () => {
+      const image = card.getAttribute('data-image');
+      const title = card.getAttribute('data-title');
+      lightboxImage.src = image || '';
+      lightboxImage.alt = title || 'Imagen';
+      lightboxTitle.textContent = title || '';
+      lightbox?.classList.remove('hidden');
+      lightbox?.classList.add('flex');
+      document.body.classList.add('overflow-hidden');
+    });
+  });
+
+  const closeLightbox = () => {
+    lightbox?.classList.add('hidden');
+    lightbox?.classList.remove('flex');
+    lightboxImage.src = '';
+    lightboxImage.alt = '';
+    lightboxTitle.textContent = '';
+    document.body.classList.remove('overflow-hidden');
+  };
+
+  lightboxClose?.addEventListener('click', closeLightbox);
+  lightbox?.addEventListener('click', (event) => {
+    if (event.target === lightbox) closeLightbox();
+  });
+
+  window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeLightbox();
+  });
+</script>
